@@ -1,3 +1,5 @@
+package layout;
+
 import appender.AppenderTest;
 import org.apache.log4j.*;
 import org.junit.Before;

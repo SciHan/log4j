@@ -1,6 +1,6 @@
 package appender;
 
-import LayoutStudy.LayoutDemo;
+import layout.TestLayoutDemo;
 import org.apache.log4j.*;
 import org.apache.log4j.jdbc.JDBCAppender;
 import org.apache.log4j.lf5.LF5Appender;
@@ -280,7 +280,7 @@ public class AppenderTest {
 
     @Test
     public void TestFileAppenderSafe() throws Exception {
-        Logger logger1 = Logger.getLogger(LayoutDemo.class);
+        Logger logger1 = Logger.getLogger(TestLayoutDemo.class);
         Logger logger2 = Logger.getLogger(SocketAppender.class);
         logger1.setAdditivity(false);
         logger2.setAdditivity(false);

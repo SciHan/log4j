@@ -1,3 +1,5 @@
+package logger;
+
 import org.apache.log4j.Appender;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.Level;
@@ -7,8 +9,9 @@ import org.apache.log4j.varia.DenyAllFilter;
 import org.apache.log4j.varia.LevelMatchFilter;
 import org.apache.log4j.varia.LevelRangeFilter;
 import org.apache.log4j.varia.StringMatchFilter;
+import org.junit.Test;
 
-public class FIlterDemo {
+public class TestFilter {
 
     /**
      * log4j中filter的使用
@@ -43,9 +46,10 @@ public class FIlterDemo {
      * 高过最大级别也不进行日志记录 然后存在一个布尔值决定如果在范围内是返回ACCEPT还是NEUTRAL
      */
 
-    private static Logger logger = Logger.getLogger(FIlterDemo.class);
+    private static Logger logger = Logger.getLogger(TestFilter.class);
 
-    public static void main(String[] args) {
+    @Test
+    public void TestFilter() {
 
 //        addDenyAllFilterToLogger();
 //        addLevelMatchFilterToLogger();
@@ -64,6 +68,7 @@ public class FIlterDemo {
             logger.error(e.getMessage(), e);
 
         }
+
     }
 
     /**
@@ -120,4 +125,5 @@ public class FIlterDemo {
         Appender appender = (Appender) logger.getParent().getAllAppenders().nextElement();
         appender.addFilter(filter);
     }
+
 }

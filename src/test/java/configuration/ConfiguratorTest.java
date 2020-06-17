@@ -1,3 +1,5 @@
+package configuration;
+
 import appender.SocketAppenderTest;
 import org.apache.log4j.*;
 import org.apache.log4j.or.ObjectRenderer;
@@ -17,13 +19,13 @@ public class ConfiguratorTest {
      * 次创建，以提高性能。它的这种特性有点类似Spring的IOC概念。Log4J支持两种配置文件：properties文件和xml文件。
      * Configurator解析配置文件，并将解析后的信息添加到LoggerRepository中。LogManager最终将LoggerRepository和
      * Configurator整合在一起。
-     * <p>
+     *
      * {@link org.apache.log4j.spi.LoggerRepository}:LoggerRepository是一个Logger的容器，它负责创建、缓存Logger
      * 实例，同时它也维护了Logger之间的关系，因为在Log4J中，所有Logger都组装成以RootLogger为根的一棵树，树的层次由Logger
      * 的Name来决定，其中以’.’分隔。
      * 除了做为一个Logger容器，它还有一个Threshold属性，用于过滤所有在Threshold级别以下的日志。以及其他和Logger操作相关的方
      * 法和属性。
-     * <p>
+     *
      * {@link org.apache.log4j.Hierarchy}:Hierarchy是Log4J中默认对LoggerRepository的实现类，它用于表达其内部的Logger
      * 是以层次结构存储的。在对LoggerRepository接口的实现中，getLogger()方法是其最核心的实现，因而首先从这个方法开始。
      * Hierarchy中用一个Hashtable来存储所有Logger实例，它以CategoryKey作为key，Logger作为value，其中CategoryKey是对
@@ -31,7 +33,7 @@ public class ConfiguratorTest {
      * hash code时就可以直接取得而不用每次都计算。
      * 同时getLogger()方法中有一个重载函数提供LoggerFactory接口，它用于没有在LoggerRepository中找到Logger实例时创建相应的
      * Logger实例，默认实现直接创建一个Logger实例，用户可以通过自定义LoggerFactory实现创建自己的Logger实例。
-     * <p>
+     *
      * {@link org.apache.log4j.Hierarchy#getLogger(String, LoggerFactory)}
      * getLogger()方法首先根据传入name创建CategoryKey实例，而后从缓存的hashtable中查找：
      * 1.如果找到对应的Logger实例，则直接返回该实例。
@@ -52,10 +54,10 @@ public class ConfiguratorTest {
      * 插入“x.y.z”Logger实例，而后插入“x.y.z.w”Logger实例，此时ProvisionNode(“x”)认为“x.y.z”Logger实例和“x.y.z.w”Logger
      * 实例都是它的子节点，而后插入“x”Logger实例，那么只需要更新“x.y.z”Logger的父节点为“x”Logger实例即可，而不用更新“x.y.z.w”
      * Logger实例的父节点。
-     * <p>
+     *
      * 其他的方法实现则比较简单，对LoggerRepository来说，它也可以像其注册HierarchyEventListener监听器，每当向一个Logger添加或
      * 删除Appender，该监听器就会触发。
-     * <p>
+     *
      * Hierarchy中保存了threshold字段，用户可以设置threshold。而对root实例，它在够着Hierarchy时就被指定了。getCurrentLoggers()
      * 方法将ht集合中所有的Logger实例取出。shutdown()方法遍历所有Logger实例以及root实例，调用所有附加其上的Appender的close()方法
      * ，并将所有Appender实例从Logger中移除，最后触发AppenderRemove事件。resetConfiguration()方法将root字段初始化、调用
@@ -66,7 +68,7 @@ public class ConfiguratorTest {
     @Test
     public void CreateLoggerTest() {
 
-        Logger testLogger = Logger.getLogger("com.test.ConfiguratorTest");
+        Logger testLogger = Logger.getLogger("com.test.configuration.ConfiguratorTest");
         Logger testLogger1 = Logger.getLogger("com.test");
 
     }
@@ -82,17 +84,18 @@ public class ConfiguratorTest {
         loggerRepository.setThreshold("DEBUG");
         Logger testLogger = Logger.getLogger("com.test");
 
-        loggerRepository.addHierarchyEventListener(new HierarchyEventListener() {
-                                                       @Override
-                                                       public void addAppenderEvent(Category cat, Appender appender) {
-                                                           System.out.println("test add appenderEvent");
-                                                       }
+        loggerRepository.addHierarchyEventListener(
+                new HierarchyEventListener() {
+                    @Override
+                    public void addAppenderEvent(Category cat, Appender appender) {
+                        System.out.println("test add appenderEvent");
+                    }
 
-                                                       @Override
-                                                       public void removeAppenderEvent(Category cat, Appender appender) {
-                                                           System.out.println("test remove appenderEvent");
-                                                       }
-                                                   }
+                    @Override
+                    public void removeAppenderEvent(Category cat, Appender appender) {
+                        System.out.println("test remove appenderEvent");
+                    }
+                }
         );
         ConsoleAppender consoleAppender = new ConsoleAppender();
 
@@ -128,7 +131,7 @@ public class ConfiguratorTest {
                 return str.toString();
             }
         });
-        Logger testLogger = Logger.getLogger("com.test.ConfiguratorTest");
+        Logger testLogger = Logger.getLogger("com.test.configuration.ConfiguratorTest");
         ArrayList<String> list = new ArrayList<>();
         list.add("abc");
         list.add("bcd");
@@ -151,7 +154,7 @@ public class ConfiguratorTest {
             }
         });
 
-        Logger testLogger = Logger.getLogger("com.test.ConfiguratorTest");
+        Logger testLogger = Logger.getLogger("com.test.configuration.ConfiguratorTest");
         try {
             throw new Exception("Deliberately throw an Exception");
         } catch (Exception e) {

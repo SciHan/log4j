@@ -1,7 +1,7 @@
+import org.apache.log4j.Logger;
+import org.junit.Test;
 
-import org.apache.log4j.*;
-
-public class HelloWorld {
+public class TestLogHelloWorld {
 
     /**
      * log4j基础知识：
@@ -34,9 +34,10 @@ public class HelloWorld {
 
     //这行关联此类并加载了日志所有的配置，代码实现在LogManager的static {}中
     //logger继承了Category，Category有一些通用的属性设置 比如appender等等等等
-    private static Logger logger = Logger.getLogger(HelloWorld.class);
+    private static Logger logger = Logger.getLogger(TestLogHelloWorld.class);
 
-    public static void main(String[] args) {
+    @Test
+    public void logHelloWorld() {
         try {
             int a = 10 / 0;
             System.out.println(a);
@@ -48,17 +49,4 @@ public class HelloWorld {
             logger.error(e.getMessage(), e);
         }
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-

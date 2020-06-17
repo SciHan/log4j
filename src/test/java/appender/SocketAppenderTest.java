@@ -80,7 +80,7 @@ public class SocketAppenderTest {
 
 
 
-        Logger testLogger = Logger.getLogger("com.test.ConfiguratorTest");
+        Logger testLogger = Logger.getLogger("com.test.configuration.ConfiguratorTest");
         try {
             throw new Exception("Deliberately throw an Exception");
         } catch (Exception e) {
