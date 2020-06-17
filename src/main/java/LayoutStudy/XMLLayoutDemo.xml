@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<!DOCTYPE log4j:eventSet PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd" [<!ENTITY data SYSTEM "abc">]>
+<log4j:eventSet version="1.2" xmlns:log4j="http://jakarta.apache.org/log4j/">
+    &data;
+    <log4j:event logger="LayoutStudy.LayoutDemo" timestamp="1592058625282" level="INFO" thread="main">
+        <log4j:message><![CDATA[Begin to execute testBasic() method]]></log4j:message>
+        <log4j:locationInfo class="LayoutStudy.LayoutDemo" method="main" file="LayoutStudy.LayoutDemo.java" line="78"/>
+    </log4j:event>
+
+    <log4j:event logger="LayoutStudy.LayoutDemo" timestamp="1592058625287" level="INFO" thread="main">
+        <log4j:message><![CDATA[Executing]]></log4j:message>
+        <log4j:locationInfo class="LayoutStudy.LayoutDemo" method="main" file="LayoutStudy.LayoutDemo.java" line="79"/>
+    </log4j:event>
+
+    <log4j:event logger="LayoutStudy.LayoutDemo" timestamp="1592058625288" level="ERROR" thread="main">
+        <log4j:message><![CDATA[Catching an Exception]]></log4j:message>
+        <log4j:throwable><![CDATA[java.lang.Exception: Deliberately throw an Exception
+	at LayoutStudy.LayoutDemo.main(LayoutStudy.LayoutDemo.java:81)]]>
+        </log4j:throwable>
+        <log4j:locationInfo class="LayoutStudy.LayoutDemo" method="main" file="LayoutStudy.LayoutDemo.java" line="83"/>
+    </log4j:event>
+
+    <log4j:event logger="LayoutStudy.LayoutDemo" timestamp="1592058625290" level="INFO" thread="main">
+        <log4j:message><![CDATA[Execute testBasic() method finished.]]></log4j:message>
+        <log4j:locationInfo class="LayoutStudy.LayoutDemo" method="main" file="LayoutStudy.LayoutDemo.java" line="85"/>
+    </log4j:event>
+
+
+</log4j:eventSet>
